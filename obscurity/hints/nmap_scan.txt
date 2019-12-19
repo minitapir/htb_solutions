@@ -1,0 +1,11 @@
+# Nmap 7.80 scan initiated Thu Dec 19 00:46:05 2019 as: /snap/nmap/823/bin/nmap -oN - obscurity
+Nmap scan report for obscurity (10.10.10.168)
+Host is up (0.10s latency).
+Not shown: 996 filtered ports
+PORT     STATE  SERVICE
+22/tcp   open   ssh
+80/tcp   closed http
+8080/tcp open   http-proxy
+9000/tcp closed cslistener
+
+# Nmap done at Thu Dec 19 00:46:13 2019 -- 1 IP address (1 host up) scanned in 8.43 seconds
