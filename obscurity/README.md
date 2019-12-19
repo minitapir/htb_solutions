@@ -7,21 +7,17 @@
 
 Website : http://10.10.10.168:8080/
 
-## __Step 1__ : Message from the [home page](http://10.10.10.168:8080/).
+## __Step 1__ : Hints from the [home page](http://10.10.10.168:8080/).
+
 > Message to server devs: the current source code for the web server is in __SuperSecureServer.py__ in the secret development directory`
 
 After some tests the server is fuzzable from the root. Any file or folder can be returned by the browser.
 
+![FFUF Report](hints/ffuf_report.png)
 
-WORDLIST = SecLists/Fuzzing/Directories/Directories_All.wordlist
-> `ffuf -w $WORDLIST -u http://10.10.10.168:8080/FUZZ/SuperSecureServer.py`
->
-> develop [Status: 200, Size: 5892, Words: 1806, Lines: 171]
+## __Step 2__ : Understanding the custom made server
 
-**Step 2** : Understanding the custom made server
-
-see (*hints/SuperSecureServer.py*)
-
+From *hints/SuperSecureServer.py* :
 ```python
 def serveDoc(self, path, docRoot):
     ...
