@@ -3,7 +3,7 @@
 
 ## **Step 0** : Ports Scan
 
-[Port Scan Result](hints/port_scan.png)
+![Port Scan Result](hints/port_scan.png)
 
 Website : http://10.10.10.168:8080/
 
