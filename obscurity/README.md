@@ -1,27 +1,22 @@
 # [Obscurity](https://www.hackthebox.eu/home/machines/profile/219)
 ## IP : 10.10.10.168
 
+## **Step 0** : Ports Scan
 
-> `nmap 10.10.10.168`
-* 22/tcp   open   ssh
-* 80/tcp   closed http
-* 8080/tcp open   http-proxy
-* 9000/tcp closed cslistener
+[Port Scan Result](hints/port_scan.png)
 
 Website : http://10.10.10.168:8080/
 
-**Step 1** : 
-Message from the [home page](http://10.10.10.168:8080/).
+## __Step 1__ : Message from the [home page](http://10.10.10.168:8080/).
 > Message to server devs: the current source code for the web server is in __SuperSecureServer.py__ in the secret development directory`
 
 After some tests the server is fuzzable from the root. Any file or folder can be returned by the browser.
 
-enumeration potential : http://obscurity:8080/FUZZ/SuperSecureServer.py
 
 WORDLIST = SecLists/Fuzzing/Directories/Directories_All.wordlist
 > `ffuf -w $WORDLIST -u http://10.10.10.168:8080/FUZZ/SuperSecureServer.py`
 >
-> develop                 [Status: 200, Size: 5892, Words: 1806, Lines: 171]
+> develop [Status: 200, Size: 5892, Words: 1806, Lines: 171]
 
 **Step 2** : Understanding the custom made server
 
