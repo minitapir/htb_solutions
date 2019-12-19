@@ -3,7 +3,7 @@
 
 ## **Step 0** : Ports Scan
 
-![Port Scan Result](hints/port_scan.png)
+![Port Scan Result](images/port_scan.png)
 
 * Website : http://10.10.10.168:8080/
 
@@ -13,7 +13,7 @@
 
 After some tests the server is fuzzable from the root. Any file or folder can be returned by the browser.
 
-![FFUF Report](hints/ffuf_report.png)
+![FFUF Report](images/ffuf_report.png)
 
 * Server code : http://10.10.10.168:8080/develop/SuperSecureServer.py
 
@@ -39,13 +39,13 @@ Also, the code shows that through this function, only the **mime** var can be us
 
 With code used in *lab/inject.py* :
 
-![injection_result](hints/inject_report.png)
+![injection_result](images/inject_report.png)
 
 We see that we're **user=www-data(uid=33)**
 
 * Time to see what's Robert has for us :
 
-![Clues,clues,clues](hints/inject_robert.png)
+![Clues,clues,clues](images/inject_robert.png)
 
 We can't read **user.txt** yet.
 But it seems we can have hints on the next step with the other files.
@@ -57,7 +57,7 @@ Payload : %27%3BMIMES%5B%27html%27%5D%3Dopen%28%27/home/robert/passwordreminder.
 ````
 * Weird encoding, got password from Chrome : 
 
-![thank_you_chrome](hints/chrome_password.png)
+![thank_you_chrome](images/chrome_password.png)
 
 To summarize : 
 * User : **robert**
