@@ -18,7 +18,23 @@ After some tests the server is fuzzable from the root. Any file or folder can be
 
 enumeration potential : http://obscurity:8080/FUZZ/SuperSecureServer.py
 
+WORDLIST = SecLists/Fuzzing/Directories/Directories_All.wordlist
+> `ffuf -w $WORDLIST -u http://10.10.10.168:8080/FUZZ/SuperSecureServer.py`
+>
+> develop                 [Status: 200, Size: 5892, Words: 1806, Lines: 171]
+
 **Step 2** : Understanding the custom made server
 
 see (*hints/SuperSecureServer.py*)
- > `nmap 10.10.10.168`
+
+```python
+def serveDoc(self, path, docRoot):
+    ...
+    path = urllib.parse.unquote(path)
+    ...
+    exec(info.format(path)) # This is how you do string formatting, right?
+    ...
+```
+The `path` parameter coming from the URL. So it's possible to inject python code from url. We need to encode with `urllib.quote()` the code to send it to the http server:
+
+> http:/obscurity/{urlib_quoted_python_code}
