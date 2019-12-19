@@ -141,6 +141,7 @@ class Server:
             docRoot = os.path.join(cwd, docRoot)
             if path == "/":
                 path = "/index.html"
+            print("requested : " + os.path.join(docRoot, path[1:]))
             requested = os.path.join(docRoot, path[1:])
             if os.path.isfile(requested):
                 mime = mimetypes.guess_type(requested)
@@ -155,6 +156,7 @@ class Server:
                 status = "200"
             else:
                 errorPage = os.path.join(docRoot, "errors", "404.html")
+                print("Can't open : %s" % requested)
                 mime = "text/html"
                 with open(errorPage, "r") as f:
                     data = f.read().format(path)
@@ -167,3 +169,7 @@ class Server:
                 data = f.read()
             status = "500"
         return {"body": data, "mime": mime, "status": status}
+
+## Custom added code to test
+serv = Server('0.0.0.0', 1337)
+serv.listen()
