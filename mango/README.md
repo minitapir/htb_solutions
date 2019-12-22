@@ -28,3 +28,15 @@ There is also a link to **analytics.php**
 * FUZZ resultsts : 
 
 ![fuzz_443](images/fuzz_443.png)
+
+* We see that **Flexmonster** is used, with hints on dir / files.
+
+```
+ErrorUnable to open file flexmonster/codepen.key?438061533.
+
+It seems that this file doesn't exist or 'Access-Control-Allow-Origin' header is absent in the requested resource.
+
+Read more info about this error
+Details: <h1>Bad Path</h1><h3 style="color: red">/boomboom/v2/flexmonster/codepen.key</h3>
+OK
+```
