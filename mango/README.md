@@ -50,3 +50,9 @@ OK
 We find a web page with credidentials prompt.
 
 > http://staging-order.mango.htb/index.php
+
+With the `lab/exploit.py` we can find the admin password with NoSQL injection.
+
+![find_password](images/find_password.png)
+
+So, the password for user `admin` is `t9KcS3>!0B#2`
