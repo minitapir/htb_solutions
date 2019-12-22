@@ -3,3 +3,12 @@
 
 ## **Step 0** : Ports Scan
 
+![Ports-scan](images/ports_scan.png)
+
+So we have a 22 SSH Port, a 80 HTTP port and a 443 HTTPS port open.
+
+## **Step 1** : Web enumeration
+
+* The HTTP website is forbidden to us.
+
+* The 443 gives us some kind of web search engine
