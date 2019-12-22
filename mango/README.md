@@ -40,3 +40,13 @@ Read more info about this error
 Details: <h1>Bad Path</h1><h3 style="color: red">/boomboom/v2/flexmonster/codepen.key</h3>
 OK
 ```
+
+* Seems to be a rabbit hole.
+
+* The ports scan tells us one thing about the 443 server : 
+
+> ssl-cert: Subject: commonName=staging-order.mango.htb/organizationName=Mango Prv Ltd./stateOrProvinceName=None/countryName=IN
+
+We find a web page with credidentials prompt.
+
+> http://staging-order.mango.htb/index.php
