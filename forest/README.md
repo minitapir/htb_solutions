@@ -10,3 +10,5 @@
 ![port_scan_part_3](images/forest_port_scan_3.png)
 
 > The port 5985 is bind to a `winrm` service which allow us to connect the machine through a Powershell.
+
+> The port 88 is bind to a Kerberos service (which is an access administrator... [more details](https://blog.varonis.fr/explication-de-lauthentification-kerberos/))
