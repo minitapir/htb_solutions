@@ -79,7 +79,7 @@ $ ls -l /usr/lib/jvm/java-11-openjdk-amd64/bin/jjs
 ```
 su admin
 ```
-* Using GTFOBins with `jjs`
+* Using [GTFOBins with `jjs`](https://gtfobins.github.io/gtfobins/jjs/)
 
 ```
 echo 'var BufferedReader = Java.type("java.io.BufferedReader");
